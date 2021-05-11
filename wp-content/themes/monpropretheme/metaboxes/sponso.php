@@ -24,15 +24,13 @@ class SponsoMetaBox {
     }
 
     public static function save($post){
-        if (array_key_exists('self::META_KEY',$_POST) && current_user_can( 'edit_post', $post )) {
-            if ($_POST['self::META_KEY' === '0']) {
-                //delete_post_meta ( int  $ post_id , chaîne  $ meta_key , mixed  $ meta_value  =  ''  )
-                delete_post_meta($post,'self::META_KEY');
+        if (array_key_exists(self::META_KEY,$_POST) && current_user_can( 'edit_post', $post )) {
+            if ($_POST[self::META_KEY === '0']) {
+                
+                delete_post_meta($post, self::META_KEY);
             }else{
-            /* update_post_meta ( int  $ post_id , string  $ meta_key ,
-             mixed  $ meta_value , mixed  $ prev_value  =  ''  )*/
-             //mettre à jour un métadonnée qu'on existe déjà
-                  update_post_meta($post,'self::META_KEY', 1);
+            
+                update_post_meta($post, self::META_KEY, 1);
             }
         }
     }
